@@ -2,7 +2,9 @@ from unittest import TestCase, main
 
 def perfect(a):
     result = []
-    if a<=0:
+    if a!=a//1:
+        result='Требуется целое число'
+    elif a<=0:
         result='Несовершенное число'
     else:
         S=0
@@ -26,4 +28,6 @@ class PerfectTest(TestCase):
         self.assertEqual(perfect(28), 'Совершенное число')
         self.assertEqual(perfect(8128), 'Совершенное число')
         self.assertEqual(perfect(8), 'Несовершенное число')
+        self.assertEqual(perfect(8.3), 'Требуется целое число')
+        self.assertEqual(perfect(-2.4), 'Требуется целое число')
 main()
