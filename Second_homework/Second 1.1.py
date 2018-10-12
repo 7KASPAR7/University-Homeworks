@@ -12,8 +12,8 @@ def factorial(n):
             F=F*i
     return F
 start_time=time.time()
-print(factorial(8))
-print(time.time()-start_time)
+factorial(8)
+print('time:',time.time()-start_time)
 class PerfectTest(TestCase):
     def test_valid_values(self):
         self.assertEqual(factorial(6), 720)
