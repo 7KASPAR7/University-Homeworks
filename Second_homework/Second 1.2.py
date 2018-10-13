@@ -1,7 +1,7 @@
 from unittest import TestCase, main
 import time
 from memory_profiler import profile
-#@profile
+
 def factorial(n):
     if n<0 or n!=n//1:
        F='Факториал определен только для целых неотрицательных чисел'
@@ -11,8 +11,11 @@ def factorial(n):
         else:
             F=factorial(n-1)*n
     return F
+@profile
+def timer(n):
+    factorial(n)
 start_time=time.time()
-factorial(8)
+timer(800)
 print('time:',time.time()-  start_time)
 class PerfectTest(TestCase):
     def test_valid_values(self):
