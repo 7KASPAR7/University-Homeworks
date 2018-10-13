@@ -2,7 +2,7 @@ from unittest import TestCase, main
 
 def factorial(n):
     if n<0 or n!=n//1:
-       F='Некорректный ввод данных'
+        raise ValueError('Факториал определен только для целых неотрицательных чисел')
     else:
         F=1
         for i in range(1,n+1):
@@ -30,8 +30,8 @@ class PerfectTest(TestCase):
         self.assertEqual(Pascal(4), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]])
         self.assertEqual(Pascal(1), [[1]])
         self.assertEqual(Pascal(0), 'Некорректный ввод данных')
-        self.assertEqual(factorial(-6), 'Некорректный ввод данных')
-        self.assertEqual(factorial(-2.5), 'Некорректный ввод данных')
-        self.assertEqual(factorial(8.5), 'Некорректный ввод данных')
+        self.assertRaises(ValueError, factorial, -6)
+        self.assertRaises(ValueError, factorial, -2.5)
+        self.assertRaises(ValueError, factorial, 8.5)
 
 main()
