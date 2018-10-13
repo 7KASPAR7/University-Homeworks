@@ -11,12 +11,14 @@ def factorial(n):
         else:
             F=factorial(n-1)*n
     return F
+
 @profile
 def timer(n):
     factorial(n)
 start_time=time.time()
 timer(800)
 print('time:',time.time()-  start_time)
+
 class PerfectTest(TestCase):
     def test_valid_values(self):
         self.assertEqual(factorial(6), 720)

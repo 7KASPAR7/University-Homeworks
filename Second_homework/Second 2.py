@@ -16,7 +16,6 @@ def perfect(a):
         else:
              result=False
     return result
-print(perfect(8128))
 
 class PerfectTest(TestCase):
     def test_valid_values(self):
