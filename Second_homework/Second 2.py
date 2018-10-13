@@ -3,9 +3,9 @@ from unittest import TestCase, main
 def perfect(a):
     result = []
     if a!=a//1:
-        result='Требуется целое число'
+        raise ValueError('Требуется целое число')
     elif a<=0:
-        result='Требуется неотрицательное число'
+        raise ValueError('Требуется неотрицательное число')
     else:
         S=0
         for i in range(1,a):
@@ -20,13 +20,13 @@ def perfect(a):
 class PerfectTest(TestCase):
     def test_valid_values(self):
         self.assertTrue(perfect(6))
-        self.assertEqual(perfect(0),'Требуется неотрицательное число')
+        self.assertRaises(ValueError, perfect, 0)
         self.assertFalse(perfect(1))
-        self.assertEqual(perfect(-6),'Требуется неотрицательное число')
-        self.assertEqual(perfect(-25),'Требуется неотрицательное число')
+        self.assertRaises(ValueError, perfect, -6)
+        self.assertRaises(ValueError, perfect, -25)
         self.assertTrue(perfect(28))
         self.assertTrue(perfect(8128))
         self.assertFalse(perfect(8))
-        self.assertEqual(perfect(8.3), 'Требуется целое число')
-        self.assertEqual(perfect(-2.4), 'Требуется целое число')
+        self.assertRaises(ValueError, perfect, 8.3)
+        self.assertRaises(ValueError, perfect, -2.4)
 main()
