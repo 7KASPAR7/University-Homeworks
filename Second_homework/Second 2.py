@@ -20,13 +20,13 @@ def perfect(a):
 class PerfectTest(TestCase):
     def test_valid_values(self):
         self.assertTrue(perfect(6))
-        self.assertRaises(ValueError, perfect, 0)
-        self.assertFalse(perfect(1))
-        self.assertRaises(ValueError, perfect, -6)
-        self.assertRaises(ValueError, perfect, -25)
         self.assertTrue(perfect(28))
         self.assertTrue(perfect(8128))
+        self.assertFalse(perfect(1))
         self.assertFalse(perfect(8))
         self.assertRaises(ValueError, perfect, 8.3)
         self.assertRaises(ValueError, perfect, -2.4)
+        self.assertRaises(ValueError, perfect, 0)
+        self.assertRaises(ValueError, perfect, -6)
+        self.assertRaises(ValueError, perfect, -25)
 main()
