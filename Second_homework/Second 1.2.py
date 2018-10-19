@@ -3,8 +3,10 @@ import time
 from memory_profiler import profile
 
 def factorial(n):
-    if n<0 or n!=n//1:
-        raise ValueError('Факториал определен только для целых неотрицательных чисел')
+    if type(n) != int:
+        raise TypeError('Некорректный ввод данных')
+    elif n < 0:
+        raise ValueError('Факториал определен только для положительных чисел')
     else:
         if n==0:
             F=1
@@ -22,8 +24,11 @@ class PerfectTest(TestCase):
         self.assertEqual(factorial(6), 720)
         self.assertEqual(factorial(0), 1)
         self.assertEqual(factorial(1), 1)
+    def test_Errors(self):
         self.assertRaises(ValueError, factorial, -6)
-        self.assertRaises(ValueError, factorial, -2.5)
-        self.assertRaises(ValueError, factorial, 8.5)
+        self.assertRaises(TypeError, factorial, -2.5)
+        self.assertRaises(TypeError, factorial, 8.5)
+        self.assertRaises(TypeError, factorial, 'dd')
+        self.assertRaises(TypeError, factorial, [])
 
 main()
