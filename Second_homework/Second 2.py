@@ -21,7 +21,7 @@ class PerfectTest(TestCase):
         self.assertTrue(perfect(6))
         self.assertTrue(perfect(28))
         self.assertTrue(perfect(8128))
-    def test_false_false(self):
+    def test_false_values(self):
         self.assertFalse(perfect(1))
         self.assertFalse(perfect(8))
         self.assertFalse(perfect(1897))
