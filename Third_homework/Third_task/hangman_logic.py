@@ -16,15 +16,15 @@ def gues(letter, count, secret_word, result, used_letters, r, k):
 
 
 def beginning():
-    lst = ['Пикник', 'Дворец', 'Ограда', 'Карниз']
+    lst = ['Пикник', 'Шахта', 'Оградка', 'Пудель', 'Покрывало', 'Броня']
     word = random.choice(lst)
     word = word.upper()
     return word
 
 
-def encryption():
+def encryption(word):
     result = []
-    for i in range(0, len(beginning())):
+    for i in range(0, len(word)):
         result.append('_')
     print(result)
     return result
