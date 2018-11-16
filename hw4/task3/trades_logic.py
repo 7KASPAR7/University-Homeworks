@@ -1,16 +1,16 @@
 def begin(file_name):
-    f = open(file_name, 'r')
-    line = f.readline()
-    Qlst = []
+    file = open(file_name, 'r')
+    line = file.readline()
+    amountlst = []
     costlst = []
     birgelst = []
     timelst = []
     while line:
         time = ''
         cost = 0
-        Q = 0
+        amount = 0
         birge = ''
-        line = f.readline()
+        line = file.readline()
         for i in range(0, len(line) - 5):
             line = line.replace('.', '')
             line = line.replace(':', '')
@@ -20,22 +20,22 @@ def begin(file_name):
                     cost = line[10:l]
                     if len(cost) == 4:
                         cost = cost + '0'
-                    Q = line[l + 1: len(line) - 3]
+                    amount = line[l + 1: len(line) - 3]
                     birge = line[len(line) - 2]
                     break
         timelst.append(time)
         costlst.append(int(cost))
-        Qlst.append(int(Q))
+        amountlst.append(int(amount))
         birgelst.append(birge)
     timelst = timelst[:-1]
     costlst = costlst[:-1]
-    Qlst = Qlst[:-1]
+    amountlst = amountlst[:-1]
     birgelst = birgelst[:-1]
-    f.close()
-    return timelst, costlst, Qlst, birgelst
+    file.close()
+    return timelst, costlst, amountlst, birgelst
 
 
-def birge(birgelst):
+def find_birge(birgelst):
     birge = ''
     dictionary = {}
     for i in range(0, len(birgelst)):
@@ -45,7 +45,7 @@ def birge(birgelst):
     return birge, dictionary
 
 
-def qq(timelst, costlst, Qlst, birgelst, birge):
+def totallst(timelst, costlst, amountlst, birgelst, birge):
     max = 0
     for i in range(0, len(timelst)):
         count = 0
@@ -55,7 +55,7 @@ def qq(timelst, costlst, Qlst, birgelst, birge):
                 if birgelst[l] in birge:
                     if int(timelst[l])-int(timelst[i]) <= 1000:
                         count = count + 1
-                        summa = summa + int(costlst[l]) * int(Qlst[l])
+                        summa = summa + int(costlst[l]) * int(amountlst[l])
                     if count > max:
                         index = i
                         max = count
@@ -63,26 +63,26 @@ def qq(timelst, costlst, Qlst, birgelst, birge):
     return [index, max, maxsumma/100, birge]
 
 
-def share(timelst, costlst, Qlst, birgelst, birge):
+def share(timelst, costlst, amountlst, birgelst, birge):
     if len(birge) > 1:
-        result = [qq(timelst, costlst, Qlst, birgelst, birge)]
+        res = [totallst(timelst, costlst, amountlst, birgelst, birge)]
     else:
-        result = []
-    for i in birge:
-        result = result + [qq(timelst, costlst, Qlst, birgelst, i)]
-    return result
+        res = []
+    for symbol in birge:
+        res = res + [totallst(timelst, costlst, amountlst, birgelst, symbol)]
+    return res
 
 
-def output(timelst, spisok, dictionary, birgelst):
+def output(timelst, LIST, dictionary, birgelst):
     RESULT = []
-    for i in range(0, len(spisok)):
-        arg = spisok[i]
-        time = timelst[arg[0]]
+    for i in range(0, len(LIST)):
+        data = LIST[i]
+        time = timelst[data[0]]
         time = time[0:2] + ':' + time[2:4] + ':' + time[4:6] + '.' + time[6:]
-        if len(arg[3]) <= 1:
-            RESULT.append([time, arg[1], arg[2], arg[3]])
+        if len(data[3]) <= 1:
+            RESULT.append([time, data[1], data[2], data[3]])
         else:
-            for k in range(arg[0], arg[0] + arg[1]):
-                dictionary[birgelst[k]] = dictionary[birgelst[k]] + 1
-            RESULT.append([time, arg[1], arg[2], dictionary])
+            for birge in range(data[0], data[0] + data[1]):
+                dictionary[birgelst[birge]] = dictionary[birgelst[birge]] + 1
+            RESULT.append([time, data[1], data[2], dictionary])
     return RESULT

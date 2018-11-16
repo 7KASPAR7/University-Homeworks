@@ -1,37 +1,37 @@
-def List(s):
+def List(string):
     result = []
-    for i in range(0, len(s)):
-        if s[i] == '(' or s[i] == ')' or s[i] == '[':
-            result.append(s[i])
-        elif s[i] == ']' or s[i] == '{' or s[i] == '}':
-            result.append(s[i])
+    for i in range(0, len(string)):
+        if string[i] == '(' or string[i] == ')' or string[i] == '[':
+            result.append(string[i])
+        elif string[i] == ']' or string[i] == '{' or string[i] == '}':
+            result.append(string[i])
     return result
 
 
-def proverka(s):
-    for i in range(1, len(s)):
-        sum = s[i - 1] + s[i]
+def proverka(string):
+    for i in range(1, len(string)):
+        sum = string[i - 1] + string[i]
         if sum == '()' or sum == '[]' or sum == '{}':
-            s[i] = ' '
-            s[i - 1] = ' '
+            string[i] = ' '
+            string[i - 1] = ' '
     result = []
-    for i in range(0, len(s)):
-        if s[i] != ' ':
-            result.append(s[i])
+    for i in range(0, len(string)):
+        if string[i] != ' ':
+            result.append(string[i])
     return result
 
 
-def redactor(s):
-    while len(s) != len(proverka(s)):
-        s = proverka(s)
-    return s
+def redactor(string):
+    while len(string) != len(proverka(string)):
+        string = proverka(string)
+    return string
 
 
 def check(string):
     LST = ['(', ')', '{', '}', '[', ']']
     k = True
-    for i in LST:
-        if i in string:
+    for symbol in LST:
+        if symbol in string:
             k = False
             break
     return k
