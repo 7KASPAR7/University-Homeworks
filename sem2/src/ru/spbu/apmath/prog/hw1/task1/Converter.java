@@ -7,21 +7,22 @@ public class Converter {
         this.value=value;
     }
     public String toBinary(){
-        String answer ="";
-        if (this.value<0){
+        StringBuilder answer = new StringBuilder();
+        int value = this.value;
+        if (value<0){
             throw new IllegalArgumentException("Нужно положительное число");
         }
-        if (this.value==0) {
-            return answer;
+        if (value==0) {
+            return "0";
         }
-    while (this.value!=0){
-        if (this.value%2==0){
-            answer = "0" + answer;
+    while (value!=0){
+        if (value%2==0){
+            answer.insert(0, "0");
         } else {
-            answer = "1" + answer;
+            answer.insert(0, "1");
         }
-        this.value = this.value/2;
+        value = value/2;
     }
-        return answer;
+        return answer.toString();
     }
 }

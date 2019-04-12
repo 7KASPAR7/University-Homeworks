@@ -13,10 +13,10 @@ public class Employee {
         this.hours = hours;
     }
 
-    private double get_Salary() {
+    private double getSalary() {
         double salary;
         if (this.hourly<70 || this.hours>60) {
-            salary = -1;
+            throw new IllegalStateException("ОШИБКА");
         }
         else if (this.hours<=40) {
             salary = this.hourly * this.hours;
@@ -29,11 +29,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        if (this.get_Salary()<0){
-            return (this.name + " " + this.hourly + " " + this.hours + " " + "ОШИБКА");
-        }
-        else {
-            return (this.name + " " + this.hourly + " " + this.hours + " " + this.get_Salary());
+        try{
+            return (this.name + " " + this.hourly + " " + this.hours + " " + this.getSalary());
+        } catch (IllegalStateException e) {
+            return(this.name + " " + this.hourly + " " + this.hours + " " + e.getMessage());
         }
     }
     }
