@@ -3,6 +3,7 @@ package ru.spbu.apmath.prog.hw2.task2;
 public class Translater {
     public int number;
     private String word;
+    // код писал самостоятельно
 
     public Translater(int number){
         this.number = number;

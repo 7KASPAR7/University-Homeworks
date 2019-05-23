@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
+    // код взят у Кости Когана
 
     private String address;
-    List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
 
     public Library(String address) {
@@ -15,7 +16,7 @@ public class Library {
 
 
     private void addBook(Book book) {
-        if (books.contains(book)) {
+        if (findBook(book.getTitle()) != null) {
             System.out.println("Такая книга уже есть");
         } else {
             books.add(book);
